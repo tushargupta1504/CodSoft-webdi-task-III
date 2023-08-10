@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html>
+<head>
+<style>
+/* Calculator styles */
+#calculator {
+  width: 150px;
+  text-align: center;
+  font-size: 14px; 
+}
+
+.display {
+  width: 100%;
+  height: 30px;
+  border: 1px solid #ccc;
+  margin-bottom: 10px;
+  padding: 5px;
+}
+
+button {
+  width: 30px;
+  height: 30px;
+  margin: 5px;
+  font-size: 14px;
+}
+
+#calculator {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    grid-gap: 10px;
+  }
+  
+  button {
+    height: 50px;
+    font-size: 20px;
+  }
+  
+  .display {
+    grid-column: 1 / span 4; 
+  }
+
+</style>  
+</head>
+
+<body>
+<div id="calculator">
+  <input type="text" class="display" disabled />
+  
+  <button>1</button>
+  <button>2</button>
+  <button>3</button>
+  <button>+</button>
+  
+  <button>4</button>
+  <button>5</button> 
+  <button>6</button>
+  <button>-</button>
+
+  <button>7</button>
+  <button>8</button>
+  <button>9</button>
+  <button>*</button>
+
+  <button>C</button>
+  <button>0</button>
+  <button>=</button>
+  <button>/</button>
+</div>
+
+<script>
+// Calculator logic
+// Get all the buttons
+const buttons = document.querySelectorAll('button'); 
+
+// Get the display element
+const display = document.querySelector('.display');
+
+// Store the current value 
+let currentValue = '0';
+
+// Store operator and numbers
+let operator = null;
+let firstValue = null;
+let secondValue = null;
+
+// Add click handler to each button
+buttons.forEach(button => {
+  button.addEventListener('click', () => {
+    
+    // Perform math when operator is clicked
+    if(button.classList.contains('operator')) {
+      operator = button.innerText;
+      firstValue = parseFloat(currentValue);
+      currentValue = '0';
+    }
+
+    // Show current value in display
+    else if (button.classList.contains('number')) {
+      currentValue += button.innerText;
+      display.innerText = currentValue; 
+    }
+
+    // Calculate result 
+    else if (button.classList.contains('equals')) {
+      secondValue = parseFloat(currentValue);
+      display.innerText = operate(firstValue, operator, secondValue);
+    }
+
+  });
+});
+
+// Perform calculation based on operator 
+function operate(a, operator, b) {
+  // Operator logic
+  return result; 
+}
+</script>
+
+</body>
+</html>
